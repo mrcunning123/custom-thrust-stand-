@@ -25,7 +25,7 @@ it can be used in 2 orientation vertically and horizontally .this design was ins
 ![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTgxOSwicHVyIjoiYmxvYl9pZCJ9fQ==--5df472c0bd4b9294fe4c23cdf4858f2215868c66/image.png)
   
 
-## 11/10/2025 - designed the pressure tank and added some angle brackets  
+## 11/10/2025 5 PM - designed the pressure tank and added some angle brackets  
 
 **Overview**
 
@@ -78,4 +78,81 @@ Mount the valve actuator (servo or stepper) with a suitable gearbox or lever for
 Install the microcontroller and sensors on the electronics panel; implement servo control and data logging.
 
 Perform static pressure and leak tests at low pressure, ramping cautiously to operating pressure while following safety procedures.  
+
+## 11/10/2025 8 PM - Circuit And code for the Thrust Stand  
+
+### Using Four 50kg Load Cells (Total 200kg Scale) with Raspberry Pi Pico and HX711
+
+**Required Components:**
+
+1. Four 50kg bathroom scale load cells (three-wire type)
+2. One HX711 load cell amplifier module
+3. Raspberry Pi Pico (any version)
+4. Jumper wires
+5. mounting board and screws for mounting
+
+**Step 1: Identify Load Cell Wires**
+
+Each load cell has 3 wires. Use a multimeter to confirm:
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTAwNTEsInB1ciI6ImJsb2JfaWQifX0=--463251a15f13d1cffb3e9b9d56d406c4442c4b26/image.png)
+
+The resistance between the white and black wires should be about 2k ohms.
+The resistance between red and white should be about 1k ohms.
+The resistance between red and black should be about 1k ohms.
+White and black are the two outer wires. Red is the middle wire.
+
+**Step 2: Wiring Four Load Cells Together**
+Connect all white wires together.
+Connect all black wires together.
+You now have two loops: a white loop and a black loop.
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTAwNTIsInB1ciI6ImJsb2JfaWQifX0=--3a7851fc930a3083c40e2266f3fed2cbd2046a18/image.png)
+
+There will be two red wires on one diagonal and two red wires on the other diagonal. Choose one diagonal red pair for E+ and E-, and the other diagonal red pair for A+ and A-.
+
+Connections to HX711:
+
+White loop -> E+
+Black loop -> E-
+One diagonal’s red wire pair -> A+
+The other diagonal’s red wire pair -> A-
+Connections from HX711 to Raspberry Pi Pico:
+HX711 VCC -> Pico 3.3V (Important: Do not use 5V)
+HX711 GND -> Pico GND
+HX711 DT -> Pico GPIO 2
+HX711 SCK -> Pico GPIO 3
+
+**Step 3: Mounting the Load Cells**
+Each load cell has an inner metal block and an outer frame.
+The outer frame must be fixed to the wooden base.
+The inner section must be free to flex when weight is applied.
+Place one load cell in each corner of the scale platform.
+Do not tighten screws too hard or the cell will not flex.
+
+**Step 4: MicroPython Code**
+
+Install the hx711 micropython library 
+then(Save this to the Pico and run)
+
+```
+from hx711 import HX711
+import time
+
+# HX711 wiring:
+# DT -> GP2
+# SCK -> GP3
+hx = HX711(dout=2, pd_sck=3)
+
+print("Remove all weight. Taring...")
+time.sleep(2)
+hx.tare()
+print("Tare complete.")
+
+# You will adjust this value during calibration
+hx.scale = 2000   # <-- change this after testing
+
+while True:
+    weight = hx.get_units()
+    print("Weight:", weight, "kg")
+    time.sleep(0.5)
+```  
 
