@@ -25,3 +25,57 @@ it can be used in 2 orientation vertically and horizontally .this design was ins
 ![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTgxOSwicHVyIjoiYmxvYl9pZCJ9fQ==--5df472c0bd4b9294fe4c23cdf4858f2215868c66/image.png)
   
 
+## 11/10/2025 - designed the pressure tank and added some angle brackets  
+
+**Overview**
+
+I designed the CAD models for the pressure tank and the mounting structure, and expanded the overall frame to provide better clearance and support. The build includes custom angle brackets, a fiberglass/epoxy pressure vessel, a valve assembly for thrust control, and an electronics mounting panel.
+
+
+**Angle Brackets & Frame**
+
+The first parts I modelled were angle brackets to join the profile channels. I created 24 identical brackets and mated them to form the frame connections.
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTk4OSwicHVyIjoiYmxvYl9pZCJ9fQ==--dab49788117f6ddf85f3b01ab2e2241cf19f38b0/image.png)
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTk5NCwicHVyIjoiYmxvYl9pZCJ9fQ==--0f48046a5a5e0585ae2287967eab640abdcc1cfd/image.png)
+
+**Pressure Tank**
+
+I modelled a cylindrical pressure tank with dimensions 550 mm length × 80 mm diameter. I plan to fabricate the tank from fiberglass and epoxy following the steps demonstrated in this video: https://youtu.be/OS1Qqw58VyY
+.
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTk5NiwicHVyIjoiYmxvYl9pZCJ9fQ==--260ddfea166d69cfe3febd0523939024306b5a8c/image.png)
+
+
+**Fasteners & Tank Clamp**
+
+I modelled the M4 bolts and designed a clamp piece to secure the pressure tank to the frame. These parts were sized and positioned to hold the tank rigidly while allowing straightforward assembly and disassembly.
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTk5MCwicHVyIjoiYmxvYl9pZCJ9fQ==--a0bb7e7b2f5a75c83222f23ed21542b55db6a321/image.png)
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTAwMDMsInB1ciI6ImJsb2JfaWQifX0=--140e4a37bac28049c11c49091c448cc9fcdba84c/image.png)
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6OTk5NywicHVyIjoiYmxvYl9pZCJ9fQ==--8ce86ecc6e149fc9f89dd7e4a8f1371430e3627c/image.png)
+**Valve & Motor Assembly**
+
+I created a simple CAD model of the ball valve and the water rocket motor interface. I will use the MAXAIR ball valve (linked) to control the exhaust flow. The valve is mounted inline with the rocket motor and is driven by a servo for thrust control.
+Link: https://www.amazon.in/MAXAIR-Switch-Thread-Fitting-Operation/dp/B0DM99YNLT
+
+(image: valve model)
+(image: motor + valve assembly)
+
+**Electronics Panel**
+
+I modelled a compact electronics panel that will house the microcontroller, power distribution, and sensors. The microcontroller will actuate the servo that turns the ball valve and will also log thrust data from the motor (pressure/IMU/other sensors).
+
+**Assembly Progress**
+
+After modelling the parts, I assembled the tank clamp and fasteners into the frame, then installed the water rocket motor and ball valve. The current assembly is ready for the electronics and control hardware to be integrated.
+![image](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MTAwMTEsInB1ciI6ImJsb2JfaWQifX0=--4a6012a19fd23d50ad351cfd42c36699df9c0a5e/image.png)
+
+
+**Next Steps**
+
+Fabricate the design and the  pressure tank using fiberglass and epoxy per the referenced tutorial.
+
+Mount the valve actuator (servo or stepper) with a suitable gearbox or lever for reliable torque and fine control.
+
+Install the microcontroller and sensors on the electronics panel; implement servo control and data logging.
+
+Perform static pressure and leak tests at low pressure, ramping cautiously to operating pressure while following safety procedures.  
+
